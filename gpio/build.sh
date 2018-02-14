@@ -1,7 +1,7 @@
 NAME="defaultName"
 PIBUILD="false"
-DEBUG=""
-DEBUGENABLE="-DCMAKE_BUILD_TYPE=Debug"
+DEBUG="-DDEFINE_DEBUG=OFF"
+DEBUGENABLE="-DCMAKE_BUILD_TYPE=Debug -DDEFINE_DEBUG=ON"
 DEPLOY=0
 U=pi@raspberrypi.local
 P=autochess

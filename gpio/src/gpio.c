@@ -12,13 +12,10 @@ const short valid_pins[] = { 0, 1, 4, 7, 8, 9, 10, 11, 14, 15, 17, 18, 21, 22, 2
 short validPin(short pinNr);
 //base function for exporting and unexporting pins to sysfs
 short setPin(short pinNr, short export, FILE* sysf_handle);
-short openValueFile(FILE* sysfs_handle, short pinNr, char* mode);
+short openValueFile(FILE** sysfs_handle, short pinNr, char* mode);
 void safeClose(FILE* f);
 
 short setPin(short pinNr, short export, FILE* sysf_handle){
-    #ifdef debug
-        printf("DEBUG: Initializing gpio pin %d\n", pinNr);
-    #endif
 
     if(!validPin(pinNr)){
         printf("ERROR: pin %d is invalid\n", pinNr);
@@ -45,14 +42,12 @@ short setPin(short pinNr, short export, FILE* sysf_handle){
         printf("ERROR: Cannot %s GPIO pin %d", mode, pinNr);
         return 2;
     }
-
-    #ifndef debug
-        printf("DEBUG: Initialized pin %d\n", pinNr);
-    #endif
-
     return 0;
 }
 short initPin(short pinNr){
+    #ifdef debug
+        printf("DEBUG: Initializing gpio pin %d\n", pinNr);
+    #endif
     FILE *sysf_handle = NULL;
     setPin(pinNr, 1, sysf_handle);
     safeClose(sysf_handle);
@@ -79,7 +74,7 @@ short setPinMode(short pinNr, gpio_mode_t pinMode){
     //check for desired mode
     char* mode_str;
     short mode_str_len;
-    if(pinMode == 1){
+    if(pinMode == 0){
         mode_str = "in";
         mode_str_len = 3;
     }else{
@@ -100,6 +95,9 @@ short setPinMode(short pinNr, gpio_mode_t pinMode){
     return 0;
 }
 short uninitPin(short pinNr){
+    #ifdef debug
+        printf("DEBUG: Uninitializing gpio pin %d\n", pinNr);
+    #endif
     FILE *sysf_handle = NULL;
     setPin(pinNr, 0, sysf_handle);
     safeClose(sysf_handle);
@@ -112,19 +110,24 @@ short readPin(short pinNr){
     //Open file for reading
     FILE* sysfs_handle = NULL;
     char* mode = "r";
-    if(openValueFile(sysfs_handle, pinNr, mode) != 0){
+
+
+    if(openValueFile(&sysfs_handle, pinNr, mode) != 0){
         return -1;
     }
 
     //Read first character from file ('1'  or ' 0')
     int c;
-    if((c = fgetc(sysfs_handle)) != EOF){
+
+    if((c = fgetc(sysfs_handle)) == EOF){
         printf("ERROR: Failed to read value from pin %d\n", pinNr);
         safeClose(sysfs_handle);
         return -2;
     }
+
     #ifdef debug
-        printf("DEBUG: read %c from pin %d\n", c, pinNr);
+        char debugChar = (char) c;
+        printf("DEBUG: read %c from pin %d\n", debugChar, pinNr);
     #endif
 
     return c - '0';
@@ -137,11 +140,11 @@ short writePin(short pinNr, short value){
     //Open file for writing
     FILE* sysfs_handle = NULL;
     char* mode = "w";
-    if(openValueFile(sysfs_handle, pinNr, mode) != 0){
+    if(openValueFile(&sysfs_handle, pinNr, mode) != 0){
         return -1;
     }
-    char* v;
-    snprintf(v, 1, "%d", value);
+    char v[2];
+    snprintf(v, 2, "%d", value);
     if(fwrite(v, sizeof(char), 1, sysfs_handle) != 1){
         printf("ERROR: Failed to write to %d pin %d\n", value, pinNr);
         return -2;
@@ -162,23 +165,22 @@ short validPin(short pinNr){
     }
     return 0;
 }
-short openValueFile(FILE* sysfs_handle, short pinNr, char* mode){
+short openValueFile(FILE** sysfs_handle, short pinNr, char* mode){
     char nr_str[SET_PIN_STRLEN];
     char handle [100] = SYSF_HANDLE_STR;
     snprintf(nr_str, SET_PIN_STRLEN, "%d", pinNr);
-    printf("cat1");
     strcat(handle, "gpio");
-    printf("cat2");
-    
     strcat(handle, nr_str);
-    printf("cat3");
-    
     strcat(handle, "/value");
 
-    if((sysfs_handle = fopen(handle, mode)) == NULL){
+    if((*sysfs_handle = fopen(handle, mode)) == NULL){
         printf("ERROR: failed to open pin %d value file in mode %s\n", pinNr, mode);
         return -1;
     }
+
+    #ifdef debug
+        printf("DEBUG: Opened valuefile for pin %d\n", pinNr);
+    #endif
     return 0;
 }
 void safeClose(FILE* f){

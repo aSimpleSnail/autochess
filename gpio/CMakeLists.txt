@@ -19,6 +19,12 @@ set (HEADERS
 
 #call cmake -D PIBUILD:bool=true to build for pi
 option(PIBUILD "pibuild" off)
+
+option(DEFINE_DEBUG "preprocess with #define debug" off)
+if(${DEFINE_DEBUG})
+    message("- building debug")
+    ADD_DEFINITIONS(-Ddebug)
+endif()
 if(${PIBUILD})
     message("- Building for rpi")
     include($ENV{HOME}/pi/pi.cmake)
@@ -28,4 +34,3 @@ else()
 endif()
 add_executable(${executableName} ${SOURCE} ${HEADERS})
 include_directories(${PROJECT_BINARY_DIR})
-message("- cmakeLists exited")

@@ -60,39 +60,39 @@ CMAKE_SOURCE_DIR = /media/huiszoon/Data/chess/gpio
 CMAKE_BINARY_DIR = /media/huiszoon/Data/chess/gpio/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/defaultName_local.dir
+# Target rules for target CMakeFiles/gpiotest.dir
 
 # All Build rule for target.
-CMakeFiles/defaultName_local.dir/all:
-	$(MAKE) -f CMakeFiles/defaultName_local.dir/build.make CMakeFiles/defaultName_local.dir/depend
-	$(MAKE) -f CMakeFiles/defaultName_local.dir/build.make CMakeFiles/defaultName_local.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/huiszoon/Data/chess/gpio/build/CMakeFiles --progress-num=1,2,3 "Built target defaultName_local"
-.PHONY : CMakeFiles/defaultName_local.dir/all
+CMakeFiles/gpiotest.dir/all:
+	$(MAKE) -f CMakeFiles/gpiotest.dir/build.make CMakeFiles/gpiotest.dir/depend
+	$(MAKE) -f CMakeFiles/gpiotest.dir/build.make CMakeFiles/gpiotest.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/media/huiszoon/Data/chess/gpio/build/CMakeFiles --progress-num=1,2,3 "Built target gpiotest"
+.PHONY : CMakeFiles/gpiotest.dir/all
 
 # Include target in all.
-all: CMakeFiles/defaultName_local.dir/all
+all: CMakeFiles/gpiotest.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/defaultName_local.dir/rule: cmake_check_build_system
+CMakeFiles/gpiotest.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /media/huiszoon/Data/chess/gpio/build/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/defaultName_local.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/gpiotest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /media/huiszoon/Data/chess/gpio/build/CMakeFiles 0
-.PHONY : CMakeFiles/defaultName_local.dir/rule
+.PHONY : CMakeFiles/gpiotest.dir/rule
 
 # Convenience name for target.
-defaultName_local: CMakeFiles/defaultName_local.dir/rule
+gpiotest: CMakeFiles/gpiotest.dir/rule
 
-.PHONY : defaultName_local
-
-# clean rule for target.
-CMakeFiles/defaultName_local.dir/clean:
-	$(MAKE) -f CMakeFiles/defaultName_local.dir/build.make CMakeFiles/defaultName_local.dir/clean
-.PHONY : CMakeFiles/defaultName_local.dir/clean
+.PHONY : gpiotest
 
 # clean rule for target.
-clean: CMakeFiles/defaultName_local.dir/clean
+CMakeFiles/gpiotest.dir/clean:
+	$(MAKE) -f CMakeFiles/gpiotest.dir/build.make CMakeFiles/gpiotest.dir/clean
+.PHONY : CMakeFiles/gpiotest.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/gpiotest.dir/clean
 
 .PHONY : clean
 

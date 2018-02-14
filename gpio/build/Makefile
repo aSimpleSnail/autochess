@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named defaultName_local
+# Target rules for targets named gpiotest
 
 # Build rule for target.
-defaultName_local: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 defaultName_local
-.PHONY : defaultName_local
+gpiotest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gpiotest
+.PHONY : gpiotest
 
 # fast build rule for target.
-defaultName_local/fast:
-	$(MAKE) -f CMakeFiles/defaultName_local.dir/build.make CMakeFiles/defaultName_local.dir/build
-.PHONY : defaultName_local/fast
+gpiotest/fast:
+	$(MAKE) -f CMakeFiles/gpiotest.dir/build.make CMakeFiles/gpiotest.dir/build
+.PHONY : gpiotest/fast
 
 src/gpio.o: src/gpio.c.o
 
@@ -129,7 +129,7 @@ src/gpio.o: src/gpio.c.o
 
 # target to build an object file
 src/gpio.c.o:
-	$(MAKE) -f CMakeFiles/defaultName_local.dir/build.make CMakeFiles/defaultName_local.dir/src/gpio.c.o
+	$(MAKE) -f CMakeFiles/gpiotest.dir/build.make CMakeFiles/gpiotest.dir/src/gpio.c.o
 .PHONY : src/gpio.c.o
 
 src/gpio.i: src/gpio.c.i
@@ -138,7 +138,7 @@ src/gpio.i: src/gpio.c.i
 
 # target to preprocess a source file
 src/gpio.c.i:
-	$(MAKE) -f CMakeFiles/defaultName_local.dir/build.make CMakeFiles/defaultName_local.dir/src/gpio.c.i
+	$(MAKE) -f CMakeFiles/gpiotest.dir/build.make CMakeFiles/gpiotest.dir/src/gpio.c.i
 .PHONY : src/gpio.c.i
 
 src/gpio.s: src/gpio.c.s
@@ -147,7 +147,7 @@ src/gpio.s: src/gpio.c.s
 
 # target to generate assembly for a file
 src/gpio.c.s:
-	$(MAKE) -f CMakeFiles/defaultName_local.dir/build.make CMakeFiles/defaultName_local.dir/src/gpio.c.s
+	$(MAKE) -f CMakeFiles/gpiotest.dir/build.make CMakeFiles/gpiotest.dir/src/gpio.c.s
 .PHONY : src/gpio.c.s
 
 src/test.o: src/test.c.o
@@ -156,7 +156,7 @@ src/test.o: src/test.c.o
 
 # target to build an object file
 src/test.c.o:
-	$(MAKE) -f CMakeFiles/defaultName_local.dir/build.make CMakeFiles/defaultName_local.dir/src/test.c.o
+	$(MAKE) -f CMakeFiles/gpiotest.dir/build.make CMakeFiles/gpiotest.dir/src/test.c.o
 .PHONY : src/test.c.o
 
 src/test.i: src/test.c.i
@@ -165,7 +165,7 @@ src/test.i: src/test.c.i
 
 # target to preprocess a source file
 src/test.c.i:
-	$(MAKE) -f CMakeFiles/defaultName_local.dir/build.make CMakeFiles/defaultName_local.dir/src/test.c.i
+	$(MAKE) -f CMakeFiles/gpiotest.dir/build.make CMakeFiles/gpiotest.dir/src/test.c.i
 .PHONY : src/test.c.i
 
 src/test.s: src/test.c.s
@@ -174,7 +174,7 @@ src/test.s: src/test.c.s
 
 # target to generate assembly for a file
 src/test.c.s:
-	$(MAKE) -f CMakeFiles/defaultName_local.dir/build.make CMakeFiles/defaultName_local.dir/src/test.c.s
+	$(MAKE) -f CMakeFiles/gpiotest.dir/build.make CMakeFiles/gpiotest.dir/src/test.c.s
 .PHONY : src/test.c.s
 
 # Help Target
@@ -185,7 +185,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... defaultName_local"
+	@echo "... gpiotest"
 	@echo "... src/gpio.o"
 	@echo "... src/gpio.i"
 	@echo "... src/gpio.s"

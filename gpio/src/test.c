@@ -8,6 +8,7 @@ int main(){
 
     while(run){
         printf("q to quit, r to read, w to write\n");
+        fflush(stdin);
         command = getchar(); 
         switch(command){
             case 'q':
@@ -42,7 +43,6 @@ int main(){
             default:
                 printf("Unkown command\n");
         };
-        fflush(stdin);
     }
     return 0;
 }
