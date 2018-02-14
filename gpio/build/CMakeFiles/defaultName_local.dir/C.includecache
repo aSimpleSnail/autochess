@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/media/huiszoon/Data/chess/gpio/src/gpio.c
+gpio.h
+/media/huiszoon/Data/chess/gpio/src/gpio.h
+stdio.h
+-
+string.h
+-
+
+/media/huiszoon/Data/chess/gpio/src/gpio.h
+
+/media/huiszoon/Data/chess/gpio/src/test.c
+gpio.h
+/media/huiszoon/Data/chess/gpio/src/gpio.h
+stdio.h
+-
+
