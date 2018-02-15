@@ -1,3 +1,0 @@
-/media/huiszoon/Data/chess/gpio/build/CMakeFiles/edit_cache.dir
-/media/huiszoon/Data/chess/gpio/build/CMakeFiles/rebuild_cache.dir
-/media/huiszoon/Data/chess/gpio/build/CMakeFiles/gpiotest.dir

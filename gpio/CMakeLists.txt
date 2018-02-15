@@ -1,5 +1,4 @@
 cmake_minimum_required (VERSION 3.5)
-
 option(EXECNAME "execname" "defaultName")
 set(executableName ${EXECNAME})
 
@@ -30,7 +29,6 @@ if(${PIBUILD})
     include($ENV{HOME}/pi/pi.cmake)
 else()
     message("- Building for local enviroment")
-    set(executableName "${executableName}_local")
 endif()
 add_executable(${executableName} ${SOURCE} ${HEADERS})
 include_directories(${PROJECT_BINARY_DIR})

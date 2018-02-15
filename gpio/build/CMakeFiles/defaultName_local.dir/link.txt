@@ -1,1 +1,0 @@
-/usr/bin/cc     CMakeFiles/defaultName_local.dir/src/gpio.c.o CMakeFiles/defaultName_local.dir/src/test.c.o  -o ../bin/defaultName_local 

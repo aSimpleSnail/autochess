@@ -2,20 +2,19 @@ NAME="defaultName"
 PIBUILD="false"
 DEBUG="-DDEFINE_DEBUG=OFF"
 DEBUGENABLE="-DCMAKE_BUILD_TYPE=Debug -DDEFINE_DEBUG=ON"
-DEPLOY=0
-U=pi@raspberrypi.local
-P=autochess
+MOVE=true
+SCPU="pi@raspberrypi.local"
 
 function checkQuit {
     if [ "$?" != 0 ];
     then
         echo "    > error occured"
         echo "    > terminating"
-        exit
+        exit 1
     fi
 }
 
-while getopts "dpn:" option; do
+while getopts "dpmn:" option; do
     case "${option}" in
         n)
         NAME=${OPTARG}
@@ -26,9 +25,17 @@ while getopts "dpn:" option; do
         d)
         DEBUG=$DEBUGENABLE
         ;;
-
+        m)
+        MOVE=true
+        ;;
     esac
 done
+
+if [ "$PIBUILD" = "false" ];
+then
+    NAME="${NAME}_local"
+fi
+
 mkdir -p build
 mkdir -p bin
 cd build
@@ -38,10 +45,17 @@ checkQuit
 echo '[  Running make  ]'
 make
 checkQuit
-if [ $DEPLOY = 0 ];
+if [ $MOVE = 0 ];
 then
-    exit
+    exit 1
 fi
-# echo "[  SCP $NAME to Pi  ]"
-# sshpass -p $P $U:~ $PWD/$NAME
+echo "[  SCP ${NAME} to Pi  ]"
+if [ "$PIBUILD" == "false" ];
+then
+    echo "    > Will not push local build to pi"
+    echo "    > terminating"
+    exit 1
+fi
+cd ..
+sshpass -f ../sshpass scp bin/$NAME $SCPU:~/$NAME
 # checkQuit
