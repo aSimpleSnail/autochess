@@ -1,4 +1,5 @@
 cmake_minimum_required (VERSION 3.5)
+project (motor)
 option(EXECNAME "execname" "defaultName")
 set(executableName ${EXECNAME})
 

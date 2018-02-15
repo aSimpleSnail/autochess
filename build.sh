@@ -57,5 +57,5 @@ then
     exit 1
 fi
 cd ..
-sshpass -f ../sshpass scp bin/$NAME $SCPU:~/$NAME
+sshpass -f sshpass scp bin/$NAME $SCPU:~/$NAME
 # checkQuit
